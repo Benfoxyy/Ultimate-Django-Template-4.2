@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "web_app",
     "drf_yasg",
     "rest_framework",
     "rest_framework.authtoken",
@@ -225,3 +226,17 @@ if SHOW_DEBUGGER_TOOLBAR:
         "127.0.0.1",
         "10.0.2.2",
     ]
+
+# Celery config
+CELERY_BROKER_URL = "redis://redis:6379/1"
+
+# Cahching config
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}

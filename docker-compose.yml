@@ -15,7 +15,7 @@ services:
     expose:
       - 5431
     ports:
-      - 5432:5432
+      - '5432:5432'
 
   backend:
     build:
@@ -26,13 +26,33 @@ services:
     volumes:
       - ./core:/app
     ports:
-      - 8000:8000
+      - '8000:8000'
     environment:
       - SECRET_KEY=test
       - DEBUG=True
     restart: always
     depends_on:
       - db
+      - redis
+
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 60 1 --loglevel warning
+
+  worker:
+    build:
+      context: .
+      dockerfile: dockerfiles/dev/django/Dockerfile
+    command: celery -A core worker --loglevel=info
+    volumes:
+      - ./core:/app
+    depends_on:
+      - redis
+      - backend
 
   smtp4dev:
     image: rnwood/smtp4dev:v3
