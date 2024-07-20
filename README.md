@@ -58,7 +58,7 @@ git clone https://github.com/Benfoxyy/Ultimate-Django-Template-4.2.git
 
 The project is base on docker so lets start <a href='https://docs.docker.com/engine/install/'>docker</a> and using the app
 ```bash
-docker-compose up -d
+docker-compose up -d --build
 ```
 
 Once you have installed django and other packages, go to the cloned repo directory and ru fallowing command

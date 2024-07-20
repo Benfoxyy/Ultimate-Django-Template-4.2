@@ -42,12 +42,12 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.sitemaps",
-    "web_app",
     "drf_yasg",
     "rest_framework",
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
     "corsheaders",
+    "accounts",
 ]
 
 SITE_ID = config("SITE_ID", cast=int, default=1)
@@ -142,6 +142,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 STATICFILES_DIRS = [
     BASE_DIR / "staticfiles",
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
