@@ -22,7 +22,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # path("account/", include('accounts.urls')),
+    path("accounts/", include('accounts.urls')),
 ]
 
 if settings.SHOW_DEBUGGER_TOOLBAR:
